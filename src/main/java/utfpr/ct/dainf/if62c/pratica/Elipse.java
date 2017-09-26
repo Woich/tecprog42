@@ -13,24 +13,35 @@ import java.io.Serializable;
  */
 public class Elipse implements FiguraComEixos,Serializable {
 
-    private double eixoMais, eixoMenos;
+    protected double eixoX, eixoY;
     
-    public void setEixoMais(double eixoMais) {
-        this.eixoMais = eixoMais;
-    }
-
-    public void setEixoMenos(double eixoMenos) {
-        this.eixoMenos = eixoMenos;
+    public Elipse(){}
+    
+    public Elipse(double eiX, double eiY){
+        this.eixoX = eiX;
+        this.eixoY = eiY;
     }
     
     @Override
     public double getEixoMenor() {
-        return eixoMenos/2;
+        if(this.eixoX < this.eixoY){
+            return this.eixoX;
+        }
+        
+        else{
+            return this.eixoY;
+        }
     }
 
     @Override
     public double getEixoMaior() {
-        return eixoMais/2;
+        if(this.eixoX > this.eixoY){
+            return this.eixoX;
+        }
+        
+        else{
+            return this.eixoY;
+        }
     }
 
     @Override
@@ -40,17 +51,20 @@ public class Elipse implements FiguraComEixos,Serializable {
 
     @Override
     public double getPerimetro() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        double resultado;
+        
+        resultado = Math.PI *(  3*(this.eixoX + this.eixoY)  -  Math.sqrt((3*this.eixoX + this.eixoY)  *  (this.eixoX + 3* this.eixoY) ) );
+        
+        return resultado;
     }
 
     @Override
     public double getArea() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
-    @Override
-    public String toString() {
-        return this.getNome();
+        double resultado;
+        
+        resultado = Math.PI * this.eixoX * this.eixoY;
+        
+        return resultado;
     }
 
 }
